@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 
-import { View, Text, FlatList, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TextInput,
+  StyleSheet,
+  Button,
+} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import FoodCard from "../Components/FoodCard";
 import { add_To_Cart, remove_To_Cart } from "../Redux/Action";
-
-
 
 const products = [
   {
@@ -104,13 +109,10 @@ const SweetScreen = () => {
     <View
       style={{
         flex: 1,
-        marginTop: 64,
+        marginTop: 0,
         backgroundColor: "#E7F0DC",
       }}
     >
-      <View style={{ alignItems: "center", marginTop: 20, padding: 5 }}>
-        <Text>Total Products: {cartData.length}</Text>
-      </View>
       <TextInput
         style={styles.searchBar}
         placeholder="Search for sweets..."

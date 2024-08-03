@@ -1,8 +1,12 @@
-import { ADD_TO_CART, REMOVE_TO_CART } from "../Components/Constant";
+import {
+  ADD_TO_CART,
+  DELETE_TO_CART,
+  REMOVE_TO_CART,
+} from "../Components/Constant";
 
-const intialState = [];
+const initialState = [];
 
-export const reducer = (state = intialState, action) => {
+export const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART:
       return [...state, action.data];
@@ -20,6 +24,9 @@ export const reducer = (state = intialState, action) => {
         }
         return true;
       });
+
+    case DELETE_TO_CART:
+      return state.filter((product)=> product.id != action.data);
     default:
       return state;
   }

@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { add_To_Cart, remove_To_Cart } from "../Redux/Action";
+import { add_To_Cart, remove_To_Cart , delete_To_Cart} from "../Redux/Action";
 
 const CartScreen = () => {
   const cartData = useSelector((state) => state.reducer);
@@ -37,12 +37,15 @@ const CartScreen = () => {
   };
 
   const removeItem = (id) => {
+    
     const matchedItem = cartData.find((item) => item.id === id);
+
     dispatch(remove_To_Cart(matchedItem.id));
+
   };
 
   const DeleteAllItem = (id) => {
-    // dispatch(remove_To_Cart(id));
+    dispatch(delete_To_Cart(id));
   };
 
   const calculateTotalAmount = () => {

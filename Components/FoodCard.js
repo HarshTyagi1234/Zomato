@@ -55,7 +55,7 @@ const FoodCard = (props) => {
             style={{
               marginLeft: 10,
               marginRight: 10,
-              fontSize: 16,
+              fontSize: 15,
               color: "black",
               fontWeight: "650",
             }}
