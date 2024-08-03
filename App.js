@@ -6,7 +6,7 @@ import SplashScreen from "./Screens/SplashScreen";
 import store from "./Redux/Store";
 import BottomTabNavigator from "./Navigation/BottomTabNavigator";
 import CartScreen from "./Screens/CartScreen";
-import { Button } from "react-native";
+import { TouchableOpacity, Image, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
@@ -15,12 +15,44 @@ const ShowItemsButton = () => {
   const navigation = useNavigation();
 
   return (
-    <Button
-      title="Show Items"
-      onPress={() => navigation.navigate("Cart")}
-    />
+    <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
+      <View style={{ margin: 20 }}>
+        <Image
+          source={require("./assets/shooping.png")}
+          style={{ width: 35, height: 35 }}
+        />
+      </View>
+      <View
+        style={{
+          backgroundColor: "#FF4C4C",
+          width: 32,
+          height: 32,
+          borderRadius: 20,
+          right: "5%",
+          top: "5%",
+          position: "absolute",
+          alignItems: "center",
+          justifyContent: "center",
+          shadowColor: "black",
+          shadowOpacity: 0.5,
+          shadowOffset: { height: 0.6, width: 0 },
+        }}
+      >
+        <Text
+          style={{
+            backgroundColor: "red",
+            margin: 1,
+            color: "#FFF6E9",
+            fontSize: 14,
+            fontWeight: "bold",
+          }}
+        >
+          10+
+        </Text>
+      </View>
+    </TouchableOpacity>
   );
- };
+};
 
 const App = () => {
   return (
@@ -32,12 +64,13 @@ const App = () => {
             name="Splash"
             component={SplashScreen}
           />
+
           <Stack.Screen
             name="VegScreen"
             component={BottomTabNavigator}
             options={{
               headerLeft: null,
-              headerRight: () =>  <ShowItemsButton/>,
+              headerRight: () => <ShowItemsButton />,
             }}
           />
           <Stack.Screen name="Cart" component={CartScreen} />

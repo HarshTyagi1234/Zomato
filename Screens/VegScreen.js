@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, FlatList, TextInput, StyleSheet } from "react-native";
+import { View,  FlatList, TextInput, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
