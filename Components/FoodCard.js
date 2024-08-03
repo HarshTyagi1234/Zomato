@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import * as Animatable from "react-native-animatable";
 import Icon from "react-native-vector-icons/FontAwesome";
 
-
-
 const FoodCard = (props) => {
   const item = props.value;
   const bgColor = item.color;
@@ -62,6 +60,7 @@ const FoodCard = (props) => {
           >
             {cardItemCount.length}
           </Text>
+
           <TouchableOpacity
             disabled={cardItemCount.length === 0}
             onPress={RemovePress}
@@ -76,9 +75,14 @@ const FoodCard = (props) => {
       </View>
 
       {item.offer && (
-        <View style={styles.offers}>
-          <Text>{item.offer}</Text>
-        </View>
+        <Animatable.View
+          animation="bounceIn"
+          iterationCount="infinite"
+          duration={1500}
+          style={styles.offers}
+        >
+          <Text style={{fontWeight:'700'}}>{item.offer}</Text>
+        </Animatable.View>
       )}
     </View>
   );
@@ -125,12 +129,13 @@ const styles = StyleSheet.create({
   },
   offers: {
     backgroundColor: "yellow",
-    height: 20,
+    height: 30,
     width: 50,
     position: "absolute",
     top: "0%",
     right: "0%",
     alignItems: "flex-end",
+    justifyContent:'center',
     borderRadius: 8,
   },
 });
