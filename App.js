@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 const ShowItemsButton = () => {
   const navigation = useNavigation();
   const cartData = useSelector((state) => state.reducer);
-  const cartTitle = cartData.length>10 ? "10+" : cartData.length
+  const cartTitle = cartData.length > 10 ? "10+" : cartData.length;
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
