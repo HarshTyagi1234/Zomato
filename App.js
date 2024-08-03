@@ -6,7 +6,7 @@ import SplashScreen from "./Screens/SplashScreen";
 
 import store from "./Redux/Store";
 import BottomTabNavigator from "./Navigation/BottomTabNavigator";
-import CartItem from "./Screens/CartItem";
+import CartScreen from "./Screens/CartScreen";
 
 const Stack = createStackNavigator();
 
@@ -25,7 +25,7 @@ const App = () => {
             name="VegScreen"
             component={BottomTabNavigator}
           />
-          <Stack.Screen name="Cart" component={CartItem} />
+          <Stack.Screen name="Cart" component={CartScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
