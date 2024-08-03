@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState,useLayoutEffect } from "react";
+
 
 import {
   View,
@@ -90,10 +91,16 @@ const products = [
   },
 ];
 
-const SweetScreen = () => {
+const SweetScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.reducer);
   const [searchQuery, setSearchQuery] = useState("");
+
+
+  useLayoutEffect (()=>{
+    navigation.getParent().setOptions({title:"Sweets"});
+  },[navigation])
+
 
   const addItem = (item) => {
     dispatch(add_To_Cart(item));

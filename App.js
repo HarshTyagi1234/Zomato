@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Provider, useSelector } from "react-redux";
@@ -58,6 +58,8 @@ const ShowItemsButton = () => {
 };
 
 const App = () => {
+const [title,setTitle] = useState('Main title');
+
   return (
     <Provider store={store}>
       <NavigationContainer>
@@ -69,9 +71,11 @@ const App = () => {
           />
 
           <Stack.Screen
-            name="VegScreen"
+            name="Home"
             component={BottomTabNavigator}
             options={{
+              headerShown: true,
+              title:title,
               headerLeft: null,
               headerRight: () => <ShowItemsButton />,
             }}

@@ -9,7 +9,7 @@ const SplashScreen = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate("VegScreen");
+      navigation.navigate("Home");
     }, 5000);
   });
 

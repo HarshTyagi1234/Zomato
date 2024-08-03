@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useLayoutEffect } from "react";
 import { View, Text, FlatList, TextInput, StyleSheet,Button } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -81,10 +81,15 @@ const products = [
   },
 ];
 
-const DrinkScreen = () => {
+const DrinkScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.reducer);
   const [searchQuery, setSearchQuery] = useState("");
+
+
+  useLayoutEffect (()=>{
+    navigation.getParent().setOptions({title:"Drinks"});
+  },[navigation])
 
   const addItem = (item) => {
     dispatch(add_To_Cart(item));
