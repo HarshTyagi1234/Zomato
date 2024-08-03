@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import DrinkScreen from "../Screens/DrinksScreen";
 
 const Stack = createStackNavigator();
 
-const DrinkStackNavigator = () => {
+const DrinkStackNavigator = ({ navigation }) => {
+  useLayoutEffect(() => {
+    if (navigation && navigation.getParent) {
+      navigation.getParent().setOptions({ title: "Drinks" });
+    }
+  }, [navigation]);
+
   return (
     <Stack.Navigator
       screenOptions={{

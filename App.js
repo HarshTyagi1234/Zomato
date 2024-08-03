@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { Provider, useSelector } from "react-redux";
@@ -10,7 +10,6 @@ import { TouchableOpacity, Image, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
- 
 
 const ShowItemsButton = () => {
   const navigation = useNavigation();
@@ -58,7 +57,6 @@ const ShowItemsButton = () => {
 };
 
 const App = () => {
-const [title,setTitle] = useState('Main title');
 
   return (
     <Provider store={store}>
@@ -75,7 +73,7 @@ const [title,setTitle] = useState('Main title');
             component={BottomTabNavigator}
             options={{
               headerShown: true,
-              title:title,
+              title: "Home",
               headerLeft: null,
               headerRight: () => <ShowItemsButton />,
             }}

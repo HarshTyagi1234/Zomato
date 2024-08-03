@@ -1,5 +1,5 @@
 import React, { useLayoutEffect, useState } from "react";
-import { View,  FlatList, TextInput, StyleSheet } from "react-native";
+import { View, FlatList, TextInput, StyleSheet } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 
 import FoodCard from "../Components/FoodCard";
@@ -83,7 +83,7 @@ const products = [
   },
 ];
 
-const VegScreen = ({navigation}) => {
+const VegScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.reducer);
   const [searchQuery, setSearchQuery] = useState("");
@@ -100,14 +100,11 @@ const VegScreen = ({navigation}) => {
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-
-  useLayoutEffect (()=>{
+  useLayoutEffect(() => {
     if (navigation && navigation.getParent) {
-      console.warn(navigation.getParent())
-
-      navigation.getParent().setOptions({title:"Veg"});
+      navigation.getParent().setOptions({ title: "Veg" });
     }
-  },[navigation])
+  }, [navigation]);
 
   return (
     <View style={{ flex: 1, marginTop: 0, backgroundColor: "#E7F0DC" }}>
