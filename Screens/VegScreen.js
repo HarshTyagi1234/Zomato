@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import FoodCard from "../Components/FoodCard";
 import { add_To_Cart, remove_To_Cart } from "../Redux/Action";
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const products = [
   {
@@ -108,12 +109,26 @@ const VegScreen = ({ navigation }) => {
 
   return (
     <View style={{ flex: 1, marginTop: 0, backgroundColor: "#E7F0DC" }}>
-      <TextInput
-        style={styles.searchBar}
-        placeholder="Search here"
-        value={searchQuery}
-        onChangeText={(text) => setSearchQuery(text)}
-      />
+      <View
+        style={{
+          backgroundColor: "white",
+          alignItems: "center",
+          flexDirection: "row",
+          borderColor: "grey",
+          borderWidth: 0.5,
+          margin: 10,
+          borderRadius: 10,
+          paddingLeft: 10,
+        }}
+      >
+        <Icon name="search" size={20} color="grey" />
+        <TextInput
+          style={styles.searchBar}
+          placeholder="Search here"
+          value={searchQuery}
+          onChangeText={(text) => setSearchQuery(text)}
+        />
+      </View>
 
       <FlatList
         data={filteredData}
@@ -129,13 +144,9 @@ const VegScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   searchBar: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 0.5,
-    margin: 15,
-    backgroundColor: "white",
-    borderRadius: 8,
-    paddingHorizontal: 8,
+    flex: 1,
+    paddingHorizontal: 2,
+    margin: 10,
   },
 });
 

@@ -97,14 +97,14 @@ const CartScreen = () => {
       </View>
 
       <TouchableOpacity onPress={() => DeleteAllItem(item.id)}>
-        <Icon name="trash" size={20} color="red" />
+        <Icon name="trash" size={30} color="red" />
       </TouchableOpacity>
     </View>
   );
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Your Cart</Text>
+     
       <FlatList
         data={combinedProducts}
         keyExtractor={(item) => item.id.toString()}
@@ -124,11 +124,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E7F0DC",
     padding: 10,
   },
-  header: {
-    fontSize: 24,
-    fontWeight: "bold",
-    marginBottom: 10,
-  },
+ 
   listContainer: {
     flexGrow: 1,
   },

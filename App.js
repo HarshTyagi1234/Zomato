@@ -24,7 +24,7 @@ const ShowItemsButton = () => {
           style={{ width: 35, height: 35 }}
         />
       </View>
-      <View
+      {cartData.length > 0 && (<View
         style={{
           backgroundColor: "#FF4C4C",
           width: 32,
@@ -52,6 +52,7 @@ const ShowItemsButton = () => {
           {cartTitle}
         </Text>
       </View>
+      )}
     </TouchableOpacity>
   );
 };
