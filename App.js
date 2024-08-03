@@ -1,7 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import SplashScreen from "./Screens/SplashScreen";
 import store from "./Redux/Store";
 import BottomTabNavigator from "./Navigation/BottomTabNavigator";
@@ -10,9 +10,12 @@ import { TouchableOpacity, Image, View, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 const Stack = createStackNavigator();
+ 
 
 const ShowItemsButton = () => {
   const navigation = useNavigation();
+  const cartData = useSelector((state) => state.reducer);
+  const cartTitle = cartData.length>10 ? "10+" : cartData.length
 
   return (
     <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
@@ -47,7 +50,7 @@ const ShowItemsButton = () => {
             fontWeight: "bold",
           }}
         >
-          10+
+          {cartTitle}
         </Text>
       </View>
     </TouchableOpacity>
