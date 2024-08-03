@@ -31,22 +31,25 @@ const CartScreen = () => {
     setCombinedProducts(deduplicatedProducts);
   }, [cartData]);
 
-  const addItem = (item) => {
-    console.warn("call");
-
-    //dispatch(add_To_Cart(item));
+  const addItem = (id) => {
+    const matchedItem = cartData.find((item) => item.id === id);
+    dispatch(add_To_Cart(matchedItem));
   };
 
-  const removeItem = (item) => {
-    //dispatch(remove_To_Cart(item.id));
+  const removeItem = (id) => {
+    const matchedItem = cartData.find((item) => item.id === id);
+    dispatch(remove_To_Cart(matchedItem.id));
   };
 
   const DeleteAllItem = (id) => {
-    //dispatch(remove_To_Cart(id));
+    // dispatch(remove_To_Cart(id));
   };
 
   const calculateTotalAmount = () => {
-    return cartData.reduce((total, item) => total + item.price, 0);
+    return combinedProducts.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
   };
 
   const renderItem = ({ item }) => (
@@ -65,7 +68,7 @@ const CartScreen = () => {
       >
         <TouchableOpacity
           onPress={() => {
-            addItem(item);
+            addItem(item.id);
           }}
         >
           <Icon name="plus-square" size={25} color="green" />
@@ -82,9 +85,8 @@ const CartScreen = () => {
           {item.quantity}
         </Text>
         <TouchableOpacity
-          //disabled={cardItemCount.length === 0}
           onPress={() => {
-            removeItem(item);
+            removeItem(item.id);
           }}
         >
           <Icon name="minus-square" size={25} color="red" />
