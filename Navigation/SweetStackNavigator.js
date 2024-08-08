@@ -1,8 +1,9 @@
 import React, { useLayoutEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import SweetScreen from "../Screens/SweetScreen";
+import ImageScreen from "../Screens/ImageScreen";
 
-import { Text } from "react-native";
+
 
 const Stack = createStackNavigator();
 
@@ -20,6 +21,7 @@ const SweetStackNavigator = ({ navigation }) => {
       }}
     >
       <Stack.Screen name="SweetScreen" component={SweetScreen} />
+      <Stack.Screen name="ImageScreen" component={ImageScreen}/>
     </Stack.Navigator>
   );
 };

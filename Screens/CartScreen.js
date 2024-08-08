@@ -8,7 +8,7 @@ import {
 } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 import Icon from "react-native-vector-icons/FontAwesome";
-import { add_To_Cart, remove_To_Cart , delete_To_Cart} from "../Redux/Action";
+import { add_To_Cart, remove_To_Cart, delete_To_Cart } from "../Redux/Action";
 
 const CartScreen = () => {
   const cartData = useSelector((state) => state.reducer);
@@ -37,11 +37,8 @@ const CartScreen = () => {
   };
 
   const removeItem = (id) => {
-    
     const matchedItem = cartData.find((item) => item.id === id);
-
     dispatch(remove_To_Cart(matchedItem.id));
-
   };
 
   const DeleteAllItem = (id) => {
@@ -62,13 +59,7 @@ const CartScreen = () => {
         <Text style={styles.itemPrice}>Rs {item.price}</Text>
       </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          justifyContent: "center",
-          marginTop: 2,
-        }}
-      >
+      <View style={styles.alignment}>
         <TouchableOpacity
           onPress={() => {
             addItem(item.id);
@@ -76,17 +67,7 @@ const CartScreen = () => {
         >
           <Icon name="plus-square" size={25} color="green" />
         </TouchableOpacity>
-        <Text
-          style={{
-            marginLeft: 10,
-            marginRight: 10,
-            fontSize: 16,
-            color: "black",
-            fontWeight: "650",
-          }}
-        >
-          {item.quantity}
-        </Text>
+        <Text style={styles.quantityStyle}>{item.quantity}</Text>
         <TouchableOpacity
           onPress={() => {
             removeItem(item.id);
@@ -104,7 +85,6 @@ const CartScreen = () => {
 
   return (
     <View style={styles.container}>
-     
       <FlatList
         data={combinedProducts}
         keyExtractor={(item) => item.id.toString()}
@@ -124,7 +104,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#E7F0DC",
     padding: 10,
   },
- 
+
   listContainer: {
     flexGrow: 1,
   },
@@ -156,6 +136,18 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "right",
+  },
+  alignment: {
+    flexDirection: "row",
+    justifyContent: "center",
+    marginTop: 2,
+  },
+  quantityStyle: {
+    marginLeft: 10,
+    marginRight: 10,
+    fontSize: 16,
+    color: "black",
+    fontWeight: "650",
   },
 });
 

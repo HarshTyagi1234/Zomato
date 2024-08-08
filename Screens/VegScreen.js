@@ -1,10 +1,9 @@
-import React, { useLayoutEffect, useState } from "react";
-import { View, FlatList, TextInput, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { View, FlatList, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-
 import FoodCard from "../Components/FoodCard";
 import { add_To_Cart, remove_To_Cart } from "../Redux/Action";
-import Icon from "react-native-vector-icons/FontAwesome";
+import SearchBar from "../Components/SearchBar";
 
 const products = [
   {
@@ -89,65 +88,34 @@ const VegScreen = ({ navigation }) => {
   const cartData = useSelector((state) => state.reducer);
   const [searchQuery, setSearchQuery] = useState("");
 
-  const addItem = (item) => {
-    dispatch(add_To_Cart(item));
-  };
-
-  const removeItem = (item) => {
-    dispatch(remove_To_Cart(item.id));
-  };
-
+  const addItem = (item) => dispatch(add_To_Cart(item));
+  const removeItem = (item) => dispatch(remove_To_Cart(item.id));
   const filteredData = products.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  useLayoutEffect(() => {
-    if (navigation && navigation.getParent) {
-      navigation.getParent().setOptions({ title: "Veg" });
-    }
-  }, [navigation]);
+  const handleImagePress = (url) => {
+    navigation.navigate("ImageScreen", { imageUrl: url });
+  };
 
   return (
-    <View style={{ flex: 1, marginTop: 0, backgroundColor: "#E7F0DC" }}>
-      <View
-        style={{
-          backgroundColor: "white",
-          alignItems: "center",
-          flexDirection: "row",
-          borderColor: "grey",
-          borderWidth: 0.5,
-          margin: 10,
-          borderRadius: 10,
-          paddingLeft: 10,
-        }}
-      >
-        <Icon name="search" size={20} color="grey" />
-        <TextInput
-          style={styles.searchBar}
-          placeholder="Search here"
-          value={searchQuery}
-          onChangeText={(text) => setSearchQuery(text)}
-        />
-      </View>
-
+    <View style={{ flex: 1, backgroundColor: "#E7F0DC" }}>
+      <SearchBar
+        value={searchQuery}
+        onChangeText={(text) => setSearchQuery(text)}
+      />
       <FlatList
         data={filteredData}
         keyExtractor={({ id }) => id.toString()}
         numColumns={2}
         renderItem={({ item }) => (
-          <FoodCard value={item} addItem={addItem} removeItem={removeItem} />
+          <TouchableOpacity onPress={() => handleImagePress(item.imgUrl)}>
+            <FoodCard value={item} addItem={addItem} removeItem={removeItem} />
+          </TouchableOpacity>
         )}
       />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  searchBar: {
-    flex: 1,
-    paddingHorizontal: 2,
-    margin: 10,
-  },
-});
 
 export default VegScreen;

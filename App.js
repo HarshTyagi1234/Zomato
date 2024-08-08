@@ -15,13 +15,15 @@ const ShowItemsButton = () => {
   const navigation = useNavigation();
   const cartData = useSelector((state) => state.reducer);
   const cartTitle = cartData.length > 10 ? "10+" : cartData.length;
-
+  
   return (
-    <TouchableOpacity onPress={() => navigation.navigate("Cart")}>
-      <View style={{ margin: 20 }}>
+    
+    <TouchableOpacity onPress={() => { if (cartData.length > 0){navigation.navigate("Cart")}}}>
+      <View  style={{ margin: 20 }}>
         <Image
           source={require("./assets/shooping.png")}
           style={{ width: 35, height: 35 }}
+         
         />
       </View>
       {cartData.length > 0 && (<View
@@ -54,6 +56,7 @@ const ShowItemsButton = () => {
       </View>
       )}
     </TouchableOpacity>
+    
   );
 };
 

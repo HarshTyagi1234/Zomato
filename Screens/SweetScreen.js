@@ -1,18 +1,9 @@
-import React, { useState,useLayoutEffect } from "react";
-
-
-import {
-  View,
-  Text,
-  FlatList,
-  TextInput,
-  StyleSheet,
-  Button,
-} from "react-native";
+import React, { useState, useLayoutEffect } from "react";
+import { View, FlatList ,TouchableOpacity} from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-
 import FoodCard from "../Components/FoodCard";
 import { add_To_Cart, remove_To_Cart } from "../Redux/Action";
+import SearchBar from "../Components/SearchBar";
 
 const products = [
   {
@@ -91,62 +82,42 @@ const products = [
   },
 ];
 
-const SweetScreen = ({navigation}) => {
+const SweetScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.reducer);
   const [searchQuery, setSearchQuery] = useState("");
 
+  useLayoutEffect(() => {
+    navigation.getParent().setOptions({ title: "Sweets" });
+  }, [navigation]);
 
-  useLayoutEffect (()=>{
-    navigation.getParent().setOptions({title:"Sweets"});
-  },[navigation])
-
-
-  const addItem = (item) => {
-    dispatch(add_To_Cart(item));
-  };
-  const removeItem = (item) => {
-    dispatch(remove_To_Cart(item.id));
-  };
+  const addItem = (item) => dispatch(add_To_Cart(item));
+  const removeItem = (item) => dispatch(remove_To_Cart(item.id));
   const filterData = products.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
+  const handleImagePress = (url) => {
+    navigation.navigate("ImageScreen", { imageUrl: url });
+  };
 
   return (
-    <View
-      style={{
-        flex: 1,
-        marginTop: 0,
-        backgroundColor: "#E7F0DC",
-      }}
-    >
-      <TextInput
-        style={styles.searchBar}
-        placeholder="Search for sweets..."
+    <View style={{ flex: 1, backgroundColor: "#E7F0DC" }}>
+      <SearchBar
         value={searchQuery}
         onChangeText={(text) => setSearchQuery(text)}
       />
       <FlatList
         data={filterData}
-        keyExtractor={({ id }) => id}
+        keyExtractor={({ id }) => id.toString()}
         numColumns={2}
         renderItem={({ item }) => (
+          <TouchableOpacity onPress={() => handleImagePress(item.imgUrl)}>
           <FoodCard value={item} addItem={addItem} removeItem={removeItem} />
+        </TouchableOpacity>
         )}
       />
     </View>
   );
 };
-const styles = StyleSheet.create({
-  searchBar: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 0.5,
-    margin: 15,
-    backgroundColor: "white",
-    borderRadius: 8,
-    paddingHorizontal: 8,
-  },
-});
 
 export default SweetScreen;

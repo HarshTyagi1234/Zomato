@@ -6,6 +6,8 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import VegStackNavigator from "./VegStackNavigator";
 import SweetStackNavigator from "./SweetStackNavigator";
 import DrinkStackNavigator from "./DrinkStackNavigator";
+import RestStackNavigator from "./RestStackNavigator";
+
 
 const Tab = createBottomTabNavigator();
 
@@ -62,6 +64,24 @@ const BottomTabNavigator = () => {
           tabBarLabel: ({ focused }) => (
             <Text style={{ fontSize: 14, color: focused ? "green" : "black" }}>
               Drinks
+            </Text>
+          ),
+        }}
+      />
+       <Tab.Screen
+        name="RestaurentStack"
+        component={RestStackNavigator}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name="map-pin"
+              size={28}
+              color={focused ? "green" : "#000"}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text style={{ fontSize: 14, color: focused ? "green" : "black" }}>
+             Restaurent
             </Text>
           ),
         }}
