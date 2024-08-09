@@ -96,8 +96,8 @@ const SweetScreen = ({ navigation }) => {
   const filterData = products.filter((item) =>
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
-  const handleImagePress = (url) => {
-    navigation.navigate("ImageScreen", { imageUrl: url });
+  const handleImgPress = (url) => {
+    //navigation.navigate("ImageViewer", { imageUrl: url });
   };
 
   return (
@@ -111,7 +111,7 @@ const SweetScreen = ({ navigation }) => {
         keyExtractor={({ id }) => id.toString()}
         numColumns={2}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => handleImagePress(item.imgUrl)}>
+          <TouchableOpacity onPress={() => handleImgPress(item.imgUrl)}>
           <FoodCard value={item} addItem={addItem} removeItem={removeItem} />
         </TouchableOpacity>
         )}

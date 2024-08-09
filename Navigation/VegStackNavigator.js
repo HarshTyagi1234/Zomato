@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import VegScreen from '../Screens/VegScreen';
- import ImageScreen from '../Screens/ImageScreen';
+ import ImageViewer from '../Screens/ImageViewer';
 
 const Stack = createStackNavigator();
 
@@ -13,7 +13,7 @@ const VegStackNavigator = () => {
       }}
     >
       <Stack.Screen name="VegScreen" component={VegScreen} options={{ title: 'Veg' }} />
-      <Stack.Screen name="ImageScreen" component={ImageScreen} />
+      <Stack.Screen name="ImageViewer" component={ImageViewer} />
     </Stack.Navigator>
   );
 };

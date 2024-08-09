@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import FoodCard from "../Components/FoodCard";
 import { add_To_Cart, remove_To_Cart } from "../Redux/Action";
 import SearchBar from "../Components/SearchBar";
+import ImageViewer from "./ImageViewer";
+
 
 const products = [
   {
@@ -87,6 +89,7 @@ const VegScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   const cartData = useSelector((state) => state.reducer);
   const [searchQuery, setSearchQuery] = useState("");
+  const [isImageViewerVisible, setImageViewerVisible] = useState(false);
 
   const addItem = (item) => dispatch(add_To_Cart(item));
   const removeItem = (item) => dispatch(remove_To_Cart(item.id));
@@ -94,8 +97,8 @@ const VegScreen = ({ navigation }) => {
     item.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleImagePress = (url) => {
-    navigation.navigate("ImageScreen", { imageUrl: url });
+  const handleImgPress = (url) => {
+    //navigation.navigate("ImageViewer", { imageUrl: url });
   };
 
   return (
@@ -109,9 +112,20 @@ const VegScreen = ({ navigation }) => {
         keyExtractor={({ id }) => id.toString()}
         numColumns={2}
         renderItem={({ item }) => (
-          <TouchableOpacity onPress={() => handleImagePress(item.imgUrl)}>
-            <FoodCard value={item} addItem={addItem} removeItem={removeItem} />
-          </TouchableOpacity>
+          <>
+            <TouchableOpacity onPress={() => setImageViewerVisible(true)}>
+              <FoodCard
+                value={item}
+                addItem={addItem}
+                removeItem={removeItem}
+              />
+            </TouchableOpacity>
+            <ImageViewer
+              visible={isImageViewerVisible}
+              imageUrl={item.imgUrl}
+              onDismiss={() => setImageViewerVisible(false)}
+            />
+          </>
         )}
       />
     </View>

@@ -1,11 +1,15 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
+import SearchBar from "../Components/SearchBar";
 
 const RestScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Welcome to find your Restaurant</Text>
-    </View>
+    <>
+      <SearchBar />
+      <View style={styles.container}>
+        <Text style={styles.text}>Welcome to find your Restaurant</Text>
+      </View>
+    </>
   );
 };
 
