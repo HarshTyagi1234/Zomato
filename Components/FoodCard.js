@@ -81,7 +81,7 @@ const FoodCard = (props) => {
           duration={1500}
           style={styles.offers}
         >
-          <Text style={{fontWeight:'700'}}>{item.offer}</Text>
+          <Text style={{ fontWeight: "700" }}>{item.offer}</Text>
         </Animatable.View>
       )}
     </View>
@@ -122,7 +122,11 @@ const styles = StyleSheet.create({
     aspectRatio: 1,
     borderRadius: 8,
   },
-  price: { fontSize: 13, fontWeight: "bold" },
+  price: {
+    fontSize: 13,
+    fontWeight: "bold",
+    //textDecorationLine: "line-through",
+  },
   names: {
     fontSize: 15,
     fontWeight: "400",
@@ -135,7 +139,8 @@ const styles = StyleSheet.create({
     top: "0%",
     right: "0%",
     alignItems: "flex-end",
-    justifyContent:'center',
+    justifyContent: "center",
     borderRadius: 8,
+    
   },
 });

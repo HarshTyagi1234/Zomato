@@ -19,7 +19,7 @@ const ImageViewer = ({ visible, imageUrl, onDismiss }) => {
   >
     <SafeAreaView style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={{ uri: imageUrl }} style={styles.image} />
+        <Image source={{ uri: imageUrl }} style={styles.image} key = {imageUrl}/>
         <TouchableOpacity style={styles.doneButton} onPress={onDismiss}>
           <Text style={styles.doneText}>Done</Text>
         </TouchableOpacity>
@@ -27,32 +27,12 @@ const ImageViewer = ({ visible, imageUrl, onDismiss }) => {
     </SafeAreaView>
   </Modal>
 );
-    // <Modal
-    //   visible={visible}
-    //   transparent={true}
-    //   onRequestClose={onDismiss}
-    //   animationType="slide"
-    // >
-    //   <SafeAreaView style={styles.container}>
-    //     <TouchableOpacity  onPress={onDismiss}>
-    //       <View style={styles.doneButton}>
-    //         <Text style={styles.doneText}>Done</Text>
-    //       </View>
-    //     </TouchableOpacity>
-    //     <View style={styles.imageContainer}>
-    //       <Image source={{ uri: imageUrl }} style={styles.image} resizeMode= 'cover' />
-    //     </View>
-    //   </SafeAreaView>
-    // </Modal>
-  //);
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "black",
-    //justifyContent: 'center',
-    //alignItems: 'center', 
    },
   imageContainer: {
     flex: 1,
@@ -63,7 +43,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    resizeMode: "cover",
+    resizeMode: "contain",
   },
   doneButton: {
     position: 'absolute',
