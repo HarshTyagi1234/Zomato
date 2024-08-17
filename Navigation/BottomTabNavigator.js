@@ -1,4 +1,4 @@
-import * as React from "react";
+import React from "react";
 import { Text } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome6";
 
@@ -7,7 +7,7 @@ import VegStackNavigator from "./VegStackNavigator";
 import SweetStackNavigator from "./SweetStackNavigator";
 import DrinkStackNavigator from "./DrinkStackNavigator";
 import RestStackNavigator from "./RestStackNavigator";
-
+import HomeStackNavigator from "./HomeStackNavigator";  
 
 const Tab = createBottomTabNavigator();
 
@@ -68,7 +68,7 @@ const BottomTabNavigator = () => {
           ),
         }}
       />
-       <Tab.Screen
+      <Tab.Screen
         name="RestaurentStack"
         component={RestStackNavigator}
         options={{
@@ -81,7 +81,25 @@ const BottomTabNavigator = () => {
           ),
           tabBarLabel: ({ focused }) => (
             <Text style={{ fontSize: 14, color: focused ? "green" : "black" }}>
-             Restaurent
+              Restaurant
+            </Text>
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="HomeStack"
+        component={HomeStackNavigator} 
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Icon
+              name="home"
+              size={28}
+              color={focused ? "green" : "#000"}
+            />
+          ),
+          tabBarLabel: ({ focused }) => (
+            <Text style={{ fontSize: 14, color: focused ? "green" : "black" }}>
+              Home
             </Text>
           ),
         }}

@@ -2,8 +2,6 @@ import React, { useLayoutEffect } from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 import SweetScreen from "../Screens/SweetScreen";
 
-
-
 const Stack = createStackNavigator();
 
 const SweetStackNavigator = ({ navigation }) => {
