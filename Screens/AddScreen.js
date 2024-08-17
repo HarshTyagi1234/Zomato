@@ -9,15 +9,16 @@ import {
   Alert,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import { useNavigation } from "@react-navigation/native";
-
-
+import { useRoute, useNavigation } from "@react-navigation/native";
+import { ItemModel } from "../Components/ItemModel";
 
 const AddScreen = () => {
   const [imageUri, setImageUri] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
   const navigation = useNavigation();
+  const route = useRoute();
+  const { getNewItem } = route.params || {};
 
   const chooseImage = async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -38,11 +39,9 @@ const AddScreen = () => {
   };
 
   const handleSave = () => {
-    navigation.navigate("Home", {
-      imageUri,
-      name,
-      address,
-    });
+    const newItem = new ItemModel(Date.now().toString(), name, address, imageUri);
+    getNewItem(newItem);
+    navigation.goBack;
   };
 
   const handleBack = () => {
@@ -56,7 +55,11 @@ const AddScreen = () => {
       </TouchableOpacity>
       <TouchableOpacity style={styles.imageContainer} onPress={chooseImage}>
         <Image
-          source={{ uri: imageUri || "https://photosly.net/wp-content/uploads/2023/12/no-dp10.jpg" }}
+          source={{
+            uri:
+              imageUri ||
+              "https://photosly.net/wp-content/uploads/2023/12/no-dp10.jpg",
+          }}
           style={styles.image}
         />
       </TouchableOpacity>
